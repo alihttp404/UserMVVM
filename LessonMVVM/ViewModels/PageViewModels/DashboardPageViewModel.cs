@@ -22,10 +22,8 @@ public class DashboardPageViewModel : NotificationService
 
     public DashboardPageViewModel()
     {
-        string jsonText = File.ReadAllText("C:\\Users\\mamma_er07\\Downloads\\LessonMVVM (1)\\LessonMVVM\\DataBase\\Users.json");
+        string jsonText = File.ReadAllText("..\\..\\Users.json");
         Users = JsonConvert.DeserializeObject<ObservableCollection<User>>(jsonText);
-
-        Users.Add(new("Ali", "ali123", "ali@gmail.com", "https://www.ali.com", new Address("Hasan Salmani 1", "Baku"), new Company("STEP IT", "Hakuna Matata")));
         
         AddViewCommand = new RelayCommand(AddUserView);
         EditViewCommand = new RelayCommand(EditUserView);

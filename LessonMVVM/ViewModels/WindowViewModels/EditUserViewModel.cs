@@ -47,13 +47,12 @@ namespace LessonMVVM.ViewModels.WindowViewModels
 
         public void Save(object? parameter)
         {
-            Users.Add(CurrUser!);
             CurrUser = new();
             CurrUser.Address = new();
             CurrUser.Company = new Company();
 
-            string json = JsonConvert.SerializeObject(CurrUser);
-            File.WriteAllText("C:\\Users\\mamma_er07\\Downloads\\LessonMVVM (1)\\LessonMVVM\\DataBase\\Users.json", json);
+            string json = JsonConvert.SerializeObject(Users);
+            File.WriteAllText("..\\..\\DataBase\\Users.json", json);
         }
 
         public bool CanSave(object? parameter)

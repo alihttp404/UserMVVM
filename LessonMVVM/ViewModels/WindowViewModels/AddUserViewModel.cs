@@ -53,7 +53,7 @@ public class AddUserViewModel : NotificationService
         user.Company = new Company();
 
         string json = JsonConvert.SerializeObject(users);
-        File.WriteAllText("C:\\Users\\mamma_er07\\Downloads\\LessonMVVM (1)\\LessonMVVM\\DataBase\\Users.json", json);
+        File.WriteAllText("..\\..\\DataBase\\Users.json", json);
     }
 
     public bool CanSave(object? parameter)
