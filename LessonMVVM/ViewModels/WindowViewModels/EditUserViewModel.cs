@@ -20,6 +20,7 @@ namespace LessonMVVM.ViewModels.WindowViewModels
 
         public User CurrUser { get => currUser; set { currUser = value; OnPropertyChanged(); } }
         public ObservableCollection<User> Users { get; set; }
+
         public ICommand? CancelCommand { get; set; }
         public ICommand? SaveCommand { get; set; }
 
@@ -52,7 +53,7 @@ namespace LessonMVVM.ViewModels.WindowViewModels
             CurrUser.Company = new Company();
 
             string json = JsonConvert.SerializeObject(Users);
-            File.WriteAllText("..\\..\\DataBase\\Users.json", json);
+            File.WriteAllText("..\\..\\..\\DataBase\\Users.json", json);
         }
 
         public bool CanSave(object? parameter)

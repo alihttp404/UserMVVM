@@ -19,14 +19,18 @@ public class DashboardPageViewModel : NotificationService
 
     public ICommand? AddViewCommand { get; set; }
     public ICommand? EditViewCommand { get; set; }
+    public ICommand? RemoveCommand { get; set; }
+    public ICommand? GetAllCommand { get; set; }
 
     public DashboardPageViewModel()
     {
-        string jsonText = File.ReadAllText("..\\..\\Users.json");
+        string jsonText = File.ReadAllText("..\\..\\..\\DataBase\\Users.json");
         Users = JsonConvert.DeserializeObject<ObservableCollection<User>>(jsonText);
         
-        AddViewCommand = new RelayCommand(AddUserView);
-        EditViewCommand = new RelayCommand(EditUserView);
+        AddViewCommand = new RelayCommand(AddUserView, IsComboBoxNotEmpty);
+        EditViewCommand = new RelayCommand(EditUserView, IsComboBoxNotEmpty);
+        RemoveCommand = new RelayCommand(Remove, IsComboBoxNotEmpty);
+        GetAllCommand = new RelayCommand(GetAll);
     }
 
     public void AddUserView(object? parameter)
@@ -42,5 +46,26 @@ public class DashboardPageViewModel : NotificationService
         var editView = new EditUserView();
         editView.DataContext = new EditUserViewModel(Users, index);
         editView.ShowDialog();
+    }
+
+    public void Remove(object? parameter)
+    {
+        int index = Convert.ToInt32(parameter);
+        Users.Remove(Users[index]).ToString();
+        string json = JsonConvert.SerializeObject(Users);
+        File.WriteAllText("..\\..\\..\\DataBase\\Users.json", json);
+    }
+
+    public void GetAll(object? parameter)
+    {
+        var addView = new GetAllView();
+        addView.DataContext = new GetAllViewModel(Users);
+        addView.ShowDialog();
+    }
+
+    public bool IsComboBoxNotEmpty(object? parameter)
+    {
+        int index = Convert.ToInt32(parameter);
+        return (index != -1);
     }
 }

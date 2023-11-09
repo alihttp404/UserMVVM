@@ -40,8 +40,6 @@ namespace LessonMVVM.Models
         [JsonPropertyName("company")]
         public Company Company { get => company; set { company = value; OnPropertyChanged(); } }
 
-
-
         public User()
         {
             
