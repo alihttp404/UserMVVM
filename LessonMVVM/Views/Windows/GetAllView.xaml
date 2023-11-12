@@ -8,8 +8,6 @@
         Title="GetAllView" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="{x:Type ListBox}">
-            <!-- Set the ItemTemplate of the ListBox to a DataTemplate which
-           explains how to display an object of type BitmapImage. -->
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
